@@ -5,38 +5,11 @@ import 'package:realTimeCalculator/widgets/topHistory.dart';
 
 class HomePage extends StatelessWidget {
   final buttonData = [
-    "1",
-    "2",
-    "3",
-    "/", //
-    "4",
-    "5",
-    "6",
-    "*", //
-    "7",
-    "8",
-    "9",
-    "/", //
-    "0",
-    "5",
-    "6",
-    "*", //
-    "1",
-    "2",
-    "3",
-    "/", //
-    "4",
-    "5",
-    "6",
-    "*", //
-    "1",
-    "2",
-    "3",
-    "/", //
-    "4",
-    "5",
-    "6",
-    "*", //
+   "sq", "rt","c","<",
+    "7", "8", "9", "/",
+    "4", "5", "6", "*",
+    "1", "2", "3", "-",
+    ".", "0", "eq","+"
   ];
   final historyText = "asd";
 
@@ -82,7 +55,7 @@ class HomePage extends StatelessWidget {
           itemBuilder: (context, index) {
             return ButtonGrid(buttonData[index]);
           },
-          itemCount: 16,
+          itemCount: 20,
         ),
       ),
     );
