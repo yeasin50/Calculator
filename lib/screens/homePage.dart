@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:realTimeCalculator/widgets/gridButton.dart';
-import 'package:realTimeCalculator/widgets/resultBox.dart';
-import 'package:realTimeCalculator/widgets/topHistory.dart';
+import 'package:realTimeCalculator/screens/responsive_builder.dart';
 
 class HomePage extends StatelessWidget {
-  final buttonData = [
-   "sq", "rt","c","<",
-    "7", "8", "9", "/",
-    "4", "5", "6", "*",
-    "1", "2", "3", "-",
-    ".", "0", "eq","+"
-  ];
   final historyText = "asd";
 
   @override
   Widget build(BuildContext context) {
+ 
     return Scaffold(
       appBar: AppBar(
         actions: [],
@@ -27,37 +19,23 @@ class HomePage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: <Widget>[
-          TopHistory(historyText),
-          ResultBox(),
-          buildGridView(),
-        ],
-      ),
-    );
-  }
-
-  Expanded buildGridView() {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 10,
-        ),
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            childAspectRatio: 4 / 3,
-
-            /// [width]/[height] ratio
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-          ),
-          itemBuilder: (context, index) {
-            return ButtonGrid(buttonData[index]);
-          },
-          itemCount: 20,
-        ),
+      body: ResponsiveSafeArea(
+        builder: (ctx, size) {
+          return Container(
+            height: size.height / 2,
+            color: Colors.red,
+            
+          );
+        },
       ),
     );
   }
 }
+
+//  children: <Widget>[
+//             TopHistory(historyText),
+//             ResultBox(),
+//             SizedBox(
+//               height: 14,
+//             )
+//           ],

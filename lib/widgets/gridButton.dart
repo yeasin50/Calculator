@@ -8,7 +8,8 @@ class ButtonGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridTile(
+    return Container(
+      margin: EdgeInsets.all(8),
       child: RaisedButton(
         onPressed: () {
           print(text);
