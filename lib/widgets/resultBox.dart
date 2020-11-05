@@ -6,14 +6,13 @@ class ResultBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-       left: 10,
-       right: 10,
-       bottom: 16,
+      margin: EdgeInsets.symmetric(
+        vertical: 4,
+        horizontal: 8,
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 10,
+        horizontal: 8,
+        vertical: 4,
       ),
       width: double.infinity,
       child: Text(

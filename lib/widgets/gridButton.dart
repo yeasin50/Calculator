@@ -8,13 +8,19 @@ class ButtonGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(8),
-      child: RaisedButton(
-        onPressed: () {
-          print(text);
-        },
-        child: Text(text),
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: RaisedButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: BorderSide(color: Colors.grey, width: 2),
+          ),
+          onPressed: () {
+            print(text);
+          },
+          child: Text(text),
+        ),
       ),
     );
   }
