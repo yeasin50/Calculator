@@ -1,8 +1,12 @@
 import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:flutter/material.dart';
+import 'package:realTimeCalculator/providers/dataProvider.dart';
+import 'package:realTimeCalculator/screens/homePage.dart';
+import 'package:provider/provider.dart';
 
 class ButtonGrid extends StatelessWidget {
   ButtonGrid(this.text_);
+  // ignore: non_constant_identifier_names
   final String text_;
 
   String get test => this.text_;
@@ -19,7 +23,8 @@ class ButtonGrid extends StatelessWidget {
             side: BorderSide(color: Colors.grey[200], width: 1.5),
           ),
           onPressed: () {
-            print(text_);
+            // print(text_);
+            Provider.of<DataProvider>(context).addDigit((text_));
           },
           child: text_.length == 1 ? EasyRichText(text_) : buildEasyRichText(),
         ),
@@ -46,11 +51,10 @@ class ButtonGrid extends StatelessWidget {
             matchWordBoundaries: false,
           ),
         EasyRichTextPattern(
-          targetString: "-",
-          subScript: true,
-          matchWordBoundaries: false,
-          style: TextStyle(fontWeight: FontWeight.bold)
-        ),
+            targetString: "-",
+            subScript: true,
+            matchWordBoundaries: false,
+            style: TextStyle(fontWeight: FontWeight.bold)),
       ],
     );
   }

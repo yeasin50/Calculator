@@ -1,37 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:realTimeCalculator/providers/dataProvider.dart';
 import 'package:realTimeCalculator/screens/responsive_builder.dart';
 import 'package:realTimeCalculator/widgets/gridButton.dart';
 import 'package:realTimeCalculator/widgets/resultBox.dart';
 import 'package:realTimeCalculator/widgets/topHistory.dart';
-
-import "package:charcode/ascii.dart";
-import "package:charcode/html_entity.dart";
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  final historyText = "asd";
-  List buttonNames = [
-    "√",
-    "x2",
-    "7",
-    "8",
-    "9",
-    "÷",
-    "4",
-    "5",
-    "6",
-    "×",
-    "1",
-    "2",
-    "3",
-    "−",
-    "0",
-    ".",
-    "⌫",
-    "+"
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final data = Provider.of<DataProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         actions: [],
@@ -51,7 +29,12 @@ class HomePage extends StatelessWidget {
               children: <Widget>[
                 Container(
                   height: size.height * .07,
-                  child: TopHistory(historyText),
+                  child: Consumer<DataProvider>(
+                    builder: (ctx, data, ch) {
+                      String histo = data.fetchData.prev==null?"0":data.fetchData.prev;
+                      return TopHistory(histo);
+                    },
+                  ),
                 ),
                 Container(
                   height: size.height * .1,

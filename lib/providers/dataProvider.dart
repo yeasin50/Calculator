@@ -1,20 +1,40 @@
 import 'package:flutter/material.dart';
 
+class Data {
+   String prev;
+   String result;
+
+  Data({
+    this.prev='0',
+    this.result='0',
+  });
+}
+
 class DataProvider with ChangeNotifier {
-  double result;
-  String history;
-  final keyResult = "result";
-  final keyHistory = "history";
-
-  DataProvider({this.result = 0.0, this.history = ""});
-
-  void update(double resutl, String history) {
-    this.history = history;
-    this.result = resutl;
+  Data data;
+  void update(Data data) {
+    data = data;
   }
 
-  Map<String, dynamic> get results {
-    Map map = {keyResult: result, keyHistory: history};
-    return map;
+  Data get fetchData async {
+    return data;
+  }
+
+  Future<void> addDigit(var digit) async {
+    String prevs = data.prev;
+    prevs += digit.toString();
+    data.prev = prevs;
+    notifyListeners();
+  }
+
+  Future<void> addOperate(String operate) async {
+    notifyListeners();
+  }
+
+  Future<Data> equalPress() async {
+    Data data_;
+
+    notifyListeners();
+    return data_;
   }
 }
