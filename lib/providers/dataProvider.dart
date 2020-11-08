@@ -1,31 +1,48 @@
 import 'package:flutter/material.dart';
 
 class Data {
-   String prev;
-   String result;
+  String prev;
+  String result;
 
-  Data({
-    this.prev='0',
-    this.result='0',
-  });
+  Data(
+    this.prev,
+    this.result,
+  );
 }
 
 class DataProvider with ChangeNotifier {
-  Data data;
+  Data data = new Data('0', '0');
   void update(Data data) {
     data = data;
   }
 
-  Data get fetchData async {
+  Data get fetchData {
     return data;
   }
 
-  Future<void> addDigit(var digit) async {
+  void addDigit(var digit) {
     String prevs = data.prev;
     prevs += digit.toString();
     data.prev = prevs;
     notifyListeners();
   }
+
+  // ScrollController _scrollController = new ScrollController(
+  //   // initialScrollOffset: 0.5,
+  //   // keepScrollOffset: true,
+  // );
+  // Future<ScrollController> navAtTOP() async {
+  //   _scrollController.animateTo(0.50,
+  //       duration: const Duration(
+  //         milliseconds: 300,
+  //       ),
+  //       curve: Curves.easeOut);
+  //   return _scrollController;
+  // }
+
+  // void navTOBotton() {
+  //   _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+  // }
 
   Future<void> addOperate(String operate) async {
     notifyListeners();

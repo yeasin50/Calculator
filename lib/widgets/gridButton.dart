@@ -23,8 +23,10 @@ class ButtonGrid extends StatelessWidget {
             side: BorderSide(color: Colors.grey[200], width: 1.5),
           ),
           onPressed: () {
-            // print(text_);
-            Provider.of<DataProvider>(context).addDigit((text_));
+            print(text_);
+            Provider.of<DataProvider>(context, listen: false)
+              ..addDigit((text_))
+              ;
           },
           child: text_.length == 1 ? EasyRichText(text_) : buildEasyRichText(),
         ),

@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final data = Provider.of<DataProvider>(context, listen: false);
+    Provider.of<DataProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         actions: [],
@@ -29,12 +29,7 @@ class HomePage extends StatelessWidget {
               children: <Widget>[
                 Container(
                   height: size.height * .07,
-                  child: Consumer<DataProvider>(
-                    builder: (ctx, data, ch) {
-                      String histo = data.fetchData.prev==null?"0":data.fetchData.prev;
-                      return TopHistory(histo);
-                    },
-                  ),
+                  child: TopHistory(),
                 ),
                 Container(
                   height: size.height * .1,
