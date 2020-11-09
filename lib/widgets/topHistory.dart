@@ -10,29 +10,42 @@ class TopHistory extends StatefulWidget {
 }
 
 class _TopHistoryState extends State<TopHistory> {
-  ScrollController _scrollController = new ScrollController(
-      // initialScrollOffset: 0.5,
-      // keepScrollOffset: true,
-      );
+  ScrollController controller = new ScrollController();
 
-  void navAtTOP() {
-    _scrollController.animateTo(0.50,
-        duration: const Duration(
-          milliseconds: 300,
-        ),
-        curve: Curves.easeOut);
+  @override
+  void initState() {
+    controller.jumpTo(controller.position.maxScrollExtent);
+    print("Nav to Bottom");
+    super.initState();
   }
 
-  void navTOBotton() {
-    _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<DataProvider>(builder: (ctx, data, ch) {
-      final data = Provider.of<DataProvider>(context);
       final prevText = data.data.prev;
-    
+
+      // void update() {
+      //   setState(() {
+      //     // controller = data.controller;
+      //     controller.jumpTo(controller.position.maxScrollExtent);
+      //     print("Nav to Bottom");
+      //   });
+      //   // return controller;
+      // }
+
+// TODO:: adding Color on operation
+      final ls = ["+", "-", "×", "÷", "√", "x2"];
+      List<EasyRichTextPattern> patterList = [];
+      ls.forEach((element) {
+        patterList.add(
+          buildEasyRichTextPattern(element),
+        );
+      });
       return Container(
           margin: const EdgeInsets.only(
             left: 16,
@@ -42,13 +55,33 @@ class _TopHistoryState extends State<TopHistory> {
           ),
           width: double.infinity,
           child: SingleChildScrollView(
-            // scrollDirection: Axis.horizontal,
-
-            child: Text(
+            scrollDirection: Axis.horizontal,
+            //FIXME:: set end of line focus
+            controller: controller,
+            child: EasyRichText(
               prevText,
+              // "A+",
+              defaultStyle: TextStyle(
+                fontSize: 20,
+                color: Colors.blueAccent,
+                fontWeight: FontWeight.normal,
+              ),
               textAlign: TextAlign.right,
+              patternList: patterList,
             ),
           ));
     });
+  }
+
+  EasyRichTextPattern buildEasyRichTextPattern(String str) {
+    return EasyRichTextPattern(
+      targetString: str,
+      hasSpecialCharacters: true,
+      matchWordBoundaries: false,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: Colors.red,
+      ),
+    );
   }
 }

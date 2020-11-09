@@ -8,7 +8,7 @@ class ResultBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<DataProvider>(context);
-    final result = data.data.result;
+    final result = data.getCurrenNum;
 
     return Consumer<DataProvider>(builder: (ctx, data, ch) {
       return Container(

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class Data {
   String prev;
   String result;
-
   Data(
     this.prev,
     this.result,
@@ -11,13 +10,44 @@ class Data {
 }
 
 class DataProvider with ChangeNotifier {
+  final ls = ["+", "-", "×", "÷", "√", "x2"];
   Data data = new Data('0', '0');
+  String currentNum = '';
+  ScrollController controller = new ScrollController();
+
+  void navTOBotton() async {
+    controller.jumpTo(controller.position.maxScrollExtent);
+    print("Nav to Bottom");
+  }
+
+  get getCurrenNum {
+    var numb = currentNum;
+    // currentNum = '';
+    return numb;
+  }
+
+  void setCurrent() {
+    currentNum = '';
+    notifyListeners();
+  }
+
+  void currentNumber(String digit) {
+    currentNum += digit;
+    notifyListeners();
+  }
+
   void update(Data data) {
     data = data;
   }
 
   Data get fetchData {
     return data;
+  }
+
+  void clear() {
+    data = new Data("0", "0");
+    currentNum = '';
+    notifyListeners();
   }
 
   void addDigit(var digit) {
@@ -38,10 +68,6 @@ class DataProvider with ChangeNotifier {
   //       ),
   //       curve: Curves.easeOut);
   //   return _scrollController;
-  // }
-
-  // void navTOBotton() {
-  //   _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
   // }
 
   Future<void> addOperate(String operate) async {

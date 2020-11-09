@@ -27,6 +27,7 @@ class HomePage extends StatelessWidget {
           return Container(
             child: Column(
               children: <Widget>[
+                //FIXME:: TOP history updating after result BOX
                 Container(
                   height: size.height * .07,
                   child: TopHistory(),
