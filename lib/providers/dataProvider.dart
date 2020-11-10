@@ -15,9 +15,11 @@ class DataProvider with ChangeNotifier {
   String currentNum = '';
   ScrollController controller = new ScrollController();
 
-  void navTOBotton() async {
+  Future<ScrollController> navTOBotton() async {
     controller.jumpTo(controller.position.maxScrollExtent);
     print("Nav to Bottom");
+
+    return controller;
   }
 
   get getCurrenNum {

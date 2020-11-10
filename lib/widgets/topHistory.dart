@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -10,17 +12,15 @@ class TopHistory extends StatefulWidget {
 }
 
 class _TopHistoryState extends State<TopHistory> {
-  ScrollController controller = new ScrollController();
-
   @override
   void initState() {
-    controller.jumpTo(controller.position.maxScrollExtent);
     print("Nav to Bottom");
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
+    // controller.jumpTo(controller.position.maxScrollExtent);
     super.didChangeDependencies();
   }
 
@@ -46,30 +46,34 @@ class _TopHistoryState extends State<TopHistory> {
           buildEasyRichTextPattern(element),
         );
       });
+      // controller.jumpTo(controller.position.maxScrollExtent);
       return Container(
-          margin: const EdgeInsets.only(
-            left: 16,
-            right: 16,
-            bottom: 4,
-            top: 16,
-          ),
-          width: double.infinity,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            //FIXME:: set end of line focus
-            controller: controller,
-            child: EasyRichText(
-              prevText,
-              // "A+",
-              defaultStyle: TextStyle(
-                fontSize: 20,
-                color: Colors.blueAccent,
-                fontWeight: FontWeight.normal,
-              ),
-              textAlign: TextAlign.right,
-              patternList: patterList,
+        margin: EdgeInsets.only(
+          left: 16,
+          right: 16,
+          bottom: 4,
+          top: 16,
+        ),
+        width: double.infinity,
+        // child: SingleChildScrollView(
+        // scrollDirection: Axis.horizontal,
+        //FIXME:: set end of line focus, No need with FittedBox
+        // controller: controller,
+        child: FittedBox(
+          child: EasyRichText(
+            prevText,
+            // "A+",
+            defaultStyle: TextStyle(
+              // fontSize: 20,
+              color: Colors.blueAccent,
+              fontWeight: FontWeight.normal,
             ),
-          ));
+            textAlign: TextAlign.right,
+            patternList: patterList,
+          ),
+        ),
+      );
+      // );
     });
   }
 
