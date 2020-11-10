@@ -13,14 +13,9 @@ class DataProvider with ChangeNotifier {
   final ls = ["+", "-", "×", "÷", "√", "x2"];
   Data data = new Data('0', '0');
   String currentNum = '';
-  ScrollController controller = new ScrollController();
+  
 
-  Future<ScrollController> navTOBotton() async {
-    controller.jumpTo(controller.position.maxScrollExtent);
-    print("Nav to Bottom");
-
-    return controller;
-  }
+  
 
   get getCurrenNum {
     var numb = currentNum;

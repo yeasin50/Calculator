@@ -37,10 +37,6 @@ class ButtonGrid extends StatelessWidget {
             if (!provider.ls.contains(text_)) {
               provider.currentNumber(text_);
             }
-
-            provider
-              // ..addDigit((text_))
-              ..navTOBotton();
           },
           child: text_.length == 1 ? EasyRichText(text_) : buildEasyRichText(),
         ),
