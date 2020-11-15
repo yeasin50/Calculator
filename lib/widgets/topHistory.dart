@@ -12,11 +12,8 @@ class TopHistory extends StatefulWidget {
 }
 
 class _TopHistoryState extends State<TopHistory> {
-  @override
-  void initState() {
-    print("Nav to Bottom");
-    super.initState();
-  }
+  String prevText = "PPP";
+  // StreamController<String> _streamController;
 
   @override
   void didChangeDependencies() {
@@ -25,9 +22,18 @@ class _TopHistoryState extends State<TopHistory> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    // _streamController = new StreamController<String>();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Consumer<DataProvider>(builder: (ctx, data, ch) {
-      final prevText = data.data.prev;
+      final String prevText = data.topCurrent.toString();
+      print("PrevText "+ prevText);
+    
+ 
 
       // void update() {
       //   setState(() {
@@ -61,7 +67,7 @@ class _TopHistoryState extends State<TopHistory> {
         // controller: controller,
         child: FittedBox(
           child: EasyRichText(
-            prevText,
+          prevText.isEmpty?"🤔":prevText,
             // "A+",
             defaultStyle: TextStyle(
               // fontSize: 20,

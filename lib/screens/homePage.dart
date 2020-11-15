@@ -6,7 +6,8 @@ import 'package:realTimeCalculator/widgets/resultBox.dart';
 import 'package:realTimeCalculator/widgets/topHistory.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+// main screen of Calculator
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<DataProvider>(context, listen: false);
@@ -29,7 +30,9 @@ class HomePage extends StatelessWidget {
               children: <Widget>[
                 //FIXME:: TOP history updating after result BOX
                 Container(
+                  alignment: Alignment.centerRight,
                   height: size.height * .07,
+                
                   child: TopHistory(),
                 ),
                 Container(

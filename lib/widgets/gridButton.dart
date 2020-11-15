@@ -30,12 +30,17 @@ class ButtonGrid extends StatelessWidget {
             }
             if (provider.ls.contains(text_)) {
               provider
-                ..addDigit(provider.currentNum + text_)
-                ..setCurrent();
+                ..addNumber(provider.currentNum)
+                ..setOperate(text_)
+                ..clearCurrentNUmber();
             }
 
             if (!provider.ls.contains(text_)) {
-              provider.currentNumber(text_);
+              String oprator_ = provider.getOperate==null?"":provider.getOperate;
+              provider
+                ..currentNumber(text_)
+                ..setOperate(oprator_)
+                ;
             }
           },
           child: text_.length == 1 ? EasyRichText(text_) : buildEasyRichText(),
