@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:realTimeCalculator/providers/dataProvider.dart';
+import 'package:realTimeCalculator/tempRave.dart';
 
 import './screens/homePage.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: RiveFlutterH(),
     );
   }
 }
