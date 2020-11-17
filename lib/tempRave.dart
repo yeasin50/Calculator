@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
 
-
 class RiveFlutterH extends StatefulWidget {
   RiveFlutterH({Key key}) : super(key: key);
 
@@ -18,14 +17,14 @@ class _RiveFlutterHState extends State<RiveFlutterH> {
   /// Tracks if the animation is playing by whether controller is running.
   bool get isPlaying => _controller?.isActive ?? false;
 
-  Artboard _riveArtboard;
+  Artboard _riveArtboard, _artboard;
   RiveAnimationController _controller;
   @override
   void initState() {
     super.initState();
     // Load the animation file from the bundle, note that you could also
     // download this. The RiveFile just expects a list of bytes.
-    rootBundle.load('assets/rives/smile_face.riv').then(
+    rootBundle.load('assets/rives/thinking_.riv').then(
       (data) async {
         final file = RiveFile();
 
@@ -36,8 +35,24 @@ class _RiveFlutterHState extends State<RiveFlutterH> {
           final artboard = file.mainArtboard;
           // Add a controller to play back a known animation on the main/default
           // artboard.We store a reference to it so we can toggle playback.
-          artboard.addController(_controller = SimpleAnimation('Untitled 1'));
+          artboard.addController(_controller = SimpleAnimation('thinking'));
           setState(() => _riveArtboard = artboard);
+        }
+      },
+    );
+    rootBundle.load('assets/rives/smile_idle.riv').then(
+      (data) async {
+        final file = RiveFile();
+
+        // Load the RiveFile from the binary data.
+        if (file.import(data)) {
+          // The artboard is the root of the animation and gets drawn in the
+          // Rive widget.
+          final artboard = file.mainArtboard;
+          // Add a controller to play back a known animation on the main/default
+          // artboard.We store a reference to it so we can toggle playback.
+          artboard.addController(_controller = SimpleAnimation('smile'));
+          setState(() => _artboard = artboard);
         }
       },
     );
@@ -49,7 +64,23 @@ class _RiveFlutterHState extends State<RiveFlutterH> {
       body: Center(
         child: _riveArtboard == null
             ? const SizedBox()
-            : Rive(artboard: _riveArtboard),
+            : Column(children: <Widget>[
+                Text("Hey"),
+                Expanded(
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    child: Rive(artboard: _artboard),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    child: Rive(artboard: _riveArtboard),
+                  ),
+                ),
+              ]),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _togglePlay,
