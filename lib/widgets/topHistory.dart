@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:realTimeCalculator/providers/dataProvider.dart';
+import 'package:realTimeCalculator/widgets/_rives/thinking.dart';
 
 class TopHistory extends StatefulWidget {
   @override
@@ -65,18 +66,28 @@ class _TopHistoryState extends State<TopHistory> {
         // scrollDirection: Axis.horizontal,
         //FIXME:: set end of line focus, No need with FittedBox
         // controller: controller,
-        child: FittedBox(
-          child: EasyRichText(
-          prevText.isEmpty?"🤔":prevText,
-            // "A+",
-            defaultStyle: TextStyle(
-              // fontSize: 20,
-              color: Colors.blueAccent,
-              fontWeight: FontWeight.normal,
+        child: Row(
+          children: <Widget>[
+
+            Container(
+              width: 70,
+              height: 70,
+              child: ThinkingRive(),
             ),
-            textAlign: TextAlign.right,
-            patternList: patterList,
-          ),
+            FittedBox(
+              child: EasyRichText(
+              prevText.isEmpty?"🤔":prevText,
+                // "A+",
+                defaultStyle: TextStyle(
+                  // fontSize: 20,
+                  color: Colors.blueAccent,
+                  fontWeight: FontWeight.normal,
+                ),
+                textAlign: TextAlign.right,
+                patternList: patterList,
+              ),
+            ),
+          ],
         ),
       );
       // );
