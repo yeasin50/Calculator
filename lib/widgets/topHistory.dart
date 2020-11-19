@@ -31,10 +31,8 @@ class _TopHistoryState extends State<TopHistory> {
   @override
   Widget build(BuildContext context) {
     return Consumer<DataProvider>(builder: (ctx, data, ch) {
-      final String prevText = data.topCurrent.toString();
-      print("PrevText "+ prevText);
-    
- 
+      final String prevText = data.topCurrent.toString() + data.tempOperator;
+      print("On TOpHistory  " + prevText);
 
       // void update() {
       //   setState(() {
@@ -56,10 +54,9 @@ class _TopHistoryState extends State<TopHistory> {
       // controller.jumpTo(controller.position.maxScrollExtent);
       return Container(
         margin: EdgeInsets.only(
-          left: 16,
-          right: 16,
+          right: 8,
           bottom: 4,
-          top: 16,
+          top: 4,
         ),
         width: double.infinity,
         // child: SingleChildScrollView(
@@ -68,23 +65,25 @@ class _TopHistoryState extends State<TopHistory> {
         // controller: controller,
         child: Row(
           children: <Widget>[
-
             Container(
               width: 70,
               height: 70,
               child: ThinkingRive(),
+              // child: Text("Container"),
             ),
-            FittedBox(
-              child: EasyRichText(
-              prevText.isEmpty?"🤔":prevText,
-                // "A+",
-                defaultStyle: TextStyle(
-                  // fontSize: 20,
-                  color: Colors.blueAccent,
-                  fontWeight: FontWeight.normal,
+            Expanded(
+              child: FittedBox(
+                child: EasyRichText(
+                  prevText.isEmpty ? " " : prevText,
+                  // "A+",
+                  defaultStyle: TextStyle(
+                    // fontSize: 20,
+                    color: Colors.blueAccent,
+                    fontWeight: FontWeight.normal,
+                  ),
+                  textAlign: TextAlign.right,
+                  patternList: patterList,
                 ),
-                textAlign: TextAlign.right,
-                patternList: patterList,
               ),
             ),
           ],

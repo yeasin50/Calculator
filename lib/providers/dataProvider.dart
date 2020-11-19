@@ -1,52 +1,61 @@
 import 'package:flutter/material.dart';
 
 class DataProvider with ChangeNotifier {
-  final ls = ["+", "-", "×", "÷", "√", "x2"];
+  final ls = ["+", "-", "×", "÷", "√", "x2", "="];
   String prevTOP = "";
   String result = "";
   String currentNum = '';
-  String _operate = '';
-  // double result = 0.0;
+  String tempOperator = '';
+  double _result = 0.0;
 
+//TODO:: generate result and set on resultBOx
+
+  get getResult {
+    return _result;
+  }
+
+  void updateResult() {
+    // _result
+
+    print(_result);
+  }
+
+  // history without temp sign
   get topCurrent {
     // String top;
     // if (prevTOP!=null) top += prevTOP;
     // if (_operate!=null) top += prevTOP;
-    if (prevTOP!=null)
+    if (prevTOP != null)
       return prevTOP;
     else
       return "0";
   }
 
-  void updateTopPrev() {
-    prevTOP += _operate;
+//setting temp operation
+  void setTempOP(String op) {
+    tempOperator = op;
     notifyListeners();
   }
 
-//setting last operation
-  void setOperate([String _operator = ""]) {
-    if (_operator != null) {
-      _operate = _operator;
-    }
-    print(_operator);
+  get getTempOP {
+    return tempOperator;
+  }
+
+  void clearOP() {
+    tempOperator = '';
     notifyListeners();
   }
 
-  void clearOperator() {
-    _operate = "";
+//fix temp sing and Update UI
+  void updateTOPtext() {
+    prevTOP += tempOperator;
+    tempOperator = '';
     notifyListeners();
-  }
-
-//get last operation sign
-  get getOperate {
-    return _operate;
   }
 
 //get current number typedin
   get getCurrenNum {
-    var numb = currentNum;
-    // currentNum = '';
-    return numb;
+    return currentNum;
   }
 
 // This will set current number with digit changeable
@@ -65,14 +74,12 @@ class DataProvider with ChangeNotifier {
     prevTOP = "";
     result = "";
     currentNum = '';
-    _operate = '';
+    tempOperator = '';
     notifyListeners();
   }
 
   void addNumber(var number) {
     prevTOP += number.toString();
-    prevTOP += (getOperate == null ? "" : getOperate);
-    _operate = "";
     notifyListeners();
   }
 

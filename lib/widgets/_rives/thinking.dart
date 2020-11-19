@@ -25,7 +25,7 @@ class _ThinkingRiveState extends State<ThinkingRive> {
   @override
   void initState() {
     //load the animation from the bundle
-    rootBundle.load("assets/rives/thinking+smile.riv").then((data) async {
+    rootBundle.load("assets/rives/thinking_idle.riv").then((data) async {
       final file = RiveFile();
 
       //load the riveFile from BinaryData
@@ -50,14 +50,15 @@ class _ThinkingRiveState extends State<ThinkingRive> {
         child: _riveArtBoard == null
             ? const SizedBox()
             : Rive(artboard: _riveArtBoard),
+            // :Text("anime")
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _togglePlay,
-        tooltip: isPlaying ? 'Pause' : 'Play',
-        child: Icon(
-          isPlaying ? Icons.pause : Icons.play_arrow,
-        ),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _togglePlay,
+      //   tooltip: isPlaying ? 'Pause' : 'Play',
+      //   child: Icon(
+      //     isPlaying ? Icons.pause : Icons.play_arrow,
+      //   ),
+      // ),
     );
   }
 }

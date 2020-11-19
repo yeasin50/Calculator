@@ -29,18 +29,25 @@ class ButtonGrid extends StatelessWidget {
               return;
             }
             if (provider.ls.contains(text_)) {
+              //update result
+              
+
+              //set temp Operator
               provider
+                ..setTempOP(text_)
                 ..addNumber(provider.currentNum)
-                ..setOperate(text_)
                 ..clearCurrentNUmber();
             }
 
             if (!provider.ls.contains(text_)) {
-              String oprator_ = provider.getOperate==null?"":provider.getOperate;
+              //fix the temp operator
+              final op = provider.getTempOP==null?'':provider.getTempOP;
+
               provider
                 ..currentNumber(text_)
-                ..setOperate(oprator_)
-                ;
+                ..addNumber(op)
+                ..clearOP();
+              ;
             }
           },
           child: text_.length == 1 ? EasyRichText(text_) : buildEasyRichText(),
