@@ -30,24 +30,22 @@ class ButtonGrid extends StatelessWidget {
             }
             if (provider.ls.contains(text_)) {
               //update result
-              
 
               //set temp Operator
               provider
                 ..setTempOP(text_)
-                ..addNumber(provider.currentNum)
+                ..addtoTOP(provider.currentNum)
                 ..clearCurrentNUmber();
             }
 
             if (!provider.ls.contains(text_)) {
               //fix the temp operator
-              final op = provider.getTempOP==null?'':provider.getTempOP;
+              final op = provider.getTempOP == null ? '' : provider.getTempOP;
 
               provider
                 ..currentNumber(text_)
-                ..addNumber(op)
+                ..addtoTOP(op)
                 ..clearOP();
-              ;
             }
           },
           child: text_.length == 1 ? EasyRichText(text_) : buildEasyRichText(),

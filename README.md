@@ -1,6 +1,15 @@
-# realTimeCalculator
+# RealTimeCalculator UI + Temp
 
-A new Flutter project.
+well this repo also contains others stuffs, those are named as temp and animation. 
+for header animation I've use Rive, EasyRichText...check [pubspec.yam](https://github.com/yeasin50/Calculator/blob/UI/pubspec.yaml) 
+
+I'm moving to my real project, so i may not complete this. 
+Fork, implement the operation and request pr.
+Thanks 
+
+## it will look like This, animation used  
+![Screen Shot](https://github.com/yeasin50/Calculator/blob/UI/assets/images/srcshot.png?raw=true "Title")
+
 
 ## Getting Started
 

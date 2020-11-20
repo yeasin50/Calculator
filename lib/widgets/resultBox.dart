@@ -8,7 +8,10 @@ class ResultBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<DataProvider>(context);
-    final result = data.getCurrenNum;
+    final _currentNUm = data.getCurrenNum;
+    /// from  result
+    final _result = data.getResult;
+    final _showResult = data.getShowResult;
 
     return Consumer<DataProvider>(builder: (ctx, data, ch) {
       return Container(
@@ -22,7 +25,7 @@ class ResultBox extends StatelessWidget {
         ),
         width: double.infinity,
         child: Text(
-          result,
+          _showResult ? _result.toString() : _currentNUm,
           textAlign: TextAlign.end,
           style: TextStyle(
             fontSize: 33,

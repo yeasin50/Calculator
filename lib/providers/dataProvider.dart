@@ -3,23 +3,56 @@ import 'package:flutter/material.dart';
 class DataProvider with ChangeNotifier {
   final ls = ["+", "-", "×", "÷", "√", "x2", "="];
   String prevTOP = "";
-  String result = "";
   String currentNum = '';
   String tempOperator = '';
-  double _result = 0.0;
 
-//TODO:: generate result and set on resultBOx
+//TODO:: doing operation, makesure to add in clear
+  // FIXME:: perform operation variables
+  double _result;
+  var _currentAsign;
+  bool _showResult = false;
+
+  get getShowResult {
+    return _showResult;
+  }
 
   get getResult {
-    return _result;
+    return _result != null ? _result : 0.0;
   }
 
-  void updateResult() {
-    // _result
-
-    print(_result);
+  void startOperation() {
+    if (!ls.contains(_currentAsign)) {
+      var numb = num.parse(_currentAsign);
+      performOpaeration(getResult, numb);
+    }
+    print("result " + _result.toString() + "\nOP" + getTempOP);
   }
 
+  void performOpaeration(double prev, double newNUm) {
+    // final ls = ["+", "-", "×", "÷", "√", "x2", "="];
+    switch (tempOperator) {
+      case "+":
+        _result = (prev + newNUm);
+        break;
+
+      case "-":
+        _result = prev - newNUm;
+        break;
+
+      case "×":
+        _result = prev * newNUm;
+        break;
+
+      case "÷":
+        _result = prev / newNUm;
+        break;
+    }
+    notifyListeners();
+  }
+
+// end of operation
+
+  /// Everything for UI
   // history without temp sign
   get topCurrent {
     // String top;
@@ -67,37 +100,23 @@ class DataProvider with ChangeNotifier {
 // getting Digit, making Number
   void currentNumber(String digit) {
     currentNum += digit;
+    _showResult = false;
     notifyListeners();
   }
 
   void clear() {
     prevTOP = "";
-    result = "";
+    // result = "";
     currentNum = '';
     tempOperator = '';
     notifyListeners();
   }
 
-  void addNumber(var number) {
+//perform topText and operation
+  void addtoTOP(var number) {
+    //feed number for operation to perform
+    _currentAsign = number;
     prevTOP += number.toString();
     notifyListeners();
   }
-
-// _scrollController
 }
-// ScrollController _scrollController = new ScrollController(
-//   // initialScrollOffset: 0.5,
-//   // keepScrollOffset: true,
-// );
-// Future<ScrollController> navAtTOP() async {
-//   _scrollController.animateTo(0.50,
-//       duration: const Duration(
-//         milliseconds: 300,
-//       ),
-//       curve: Curves.easeOut);
-//   return _scrollController;
-// }
-
-// Future<void> addOperate(String operate) async {
-//   notifyListeners();
-// }
